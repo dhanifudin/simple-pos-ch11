@@ -11,9 +11,9 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // API kasir mobile (minggu 10 — arsitektur & desain API, token-based authentication)
-Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware(['auth:sanctum', 'active'])->name('api.')->group(function () {
+Route::middleware('auth:sanctum')->name('api.')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('products', ProductController::class)->only(['index', 'show']);
     Route::apiResource('transactions', TransactionController::class)->only(['index', 'store', 'show']);
