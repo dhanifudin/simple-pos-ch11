@@ -2,10 +2,47 @@
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
 
+/*
+ * Design tokens — "till & ledger": a point-of-sale tool grounded in receipt
+ * paper and cash-register materials. Money and codes always render in
+ * tabular monospace, like a printed struk; the display face carries the
+ * brand voice in headings only.
+ */
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+    --color-ink: #21201c;
+    --color-ink-soft: #57544c;
+    --color-surface: #f6f3ec;
+    --color-surface-raised: #fffdf9;
+    --color-rail: #17231d;
+    --color-rail-soft: #24352c;
+    --color-brass: #a9720c;
+    --color-brass-soft: #f1e3c8;
+    --color-signal-green: #1f6e43;
+    --color-signal-green-soft: #e3efe7;
+    --color-signal-red: #b23a2e;
+    --color-signal-red-soft: #f8e6e3;
+}
+
+@layer utilities {
+    /* Perforated "tear line" — the app's one recurring signature: a nod to
+       tearing a receipt, used at cart/struk/report section breaks. */
+    .perforation {
+        background-image: repeating-linear-gradient(
+            to right,
+            var(--color-ink-soft) 0,
+            var(--color-ink-soft) 6px,
+            transparent 6px,
+            transparent 12px
+        );
+        background-position: top;
+        background-repeat: repeat-x;
+        background-size: 12px 1px;
+        height: 1px;
+        opacity: 0.35;
+    }
 }
